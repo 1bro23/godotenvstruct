@@ -1,4 +1,4 @@
-module github.com/1bro23/godotenvstruct.git
+module github.com/1bro23/godotenvstruct
 
 go 1.24.2
 

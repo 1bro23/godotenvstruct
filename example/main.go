@@ -3,7 +3,7 @@ package example
 import (
 	"fmt"
 
-	"github.com/1bro23/godotenvstruct.git"
+	"github.com/1bro23/godotenvstruct"
 )
 
 type Config struct {
