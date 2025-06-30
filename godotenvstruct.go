@@ -32,6 +32,8 @@ func Bind(prefix string, s interface{}) error {
 		if err != nil {
 			missing = append(missing, err.Error())
 			continue
+		} else if str == "" {
+			missing = append(missing, tag+" is null.")
 		}
 
 		err = setFieldValue(value, str)
