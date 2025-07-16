@@ -40,3 +40,12 @@ func TestBind_WithoutCustomName(t *testing.T) {
 	assert.Equal(t, "localhost", config.Host)
 	assert.Equal(t, "8080", config.Port)
 }
+func TestBind_ShouldThrow_MissingField(t *testing.T) {
+	os.Setenv("TEST_PREFIX_Config__Host", "localhost")
+	os.Unsetenv("TEST_PREFIX_Config__Port")
+
+	var config Config
+	err := Bind("TEST_PREFIX_", &config)
+
+	assert.NotNil(t, err)
+}

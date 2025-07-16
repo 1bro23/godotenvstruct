@@ -28,7 +28,7 @@ func Bind(prefix string, s interface{}) error {
 		if tag == "" {
 			tag = t.Name() + "__" + field.Name
 		}
-		str, err := GetEnv(prefix + tag)
+		str, err := GetEnv(prefix, tag)
 		if err != nil {
 			missing = append(missing, err.Error())
 			continue
@@ -48,10 +48,12 @@ func Bind(prefix string, s interface{}) error {
 	return nil
 }
 
-func GetEnv(key string) (string, error) {
-	str := os.Getenv(key)
+func GetEnv(prefix string, tag string) (string, error) {
+	str := os.Getenv(prefix + tag)
 	if str == "" {
-		return "", errors.New("- " + strings.Replace(key, "_", ".", -1) + " can't be null or empty")
+		field := strings.Replace(tag, "__", ".", -1)
+		field = strings.Replace(field, "_", ".", -1)
+		return "", errors.New("- " + field + " can't be null or empty")
 	}
 	return str, nil
 }
