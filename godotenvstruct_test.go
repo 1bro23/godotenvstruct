@@ -8,8 +8,8 @@ import (
 )
 
 type ConfigCustomName struct {
-	HostCustom string `env:"Config_Host"`
-	PortCustom string `env:"Config_Port"`
+	HostCustom string `env:"Config__Host"`
+	PortCustom string `env:"Config__Port"`
 }
 
 type Config struct {
@@ -18,8 +18,8 @@ type Config struct {
 }
 
 func TestBind_WithCustomName(t *testing.T) {
-	os.Setenv("TEST_PREFIX_Config_Host", "localhost")
-	os.Setenv("TEST_PREFIX_Config_Port", "8080")
+	os.Setenv("TEST_PREFIX_Config__Host", "localhost")
+	os.Setenv("TEST_PREFIX_Config__Port", "8080")
 
 	var config ConfigCustomName
 	err := Bind("TEST_PREFIX_", &config)
@@ -30,8 +30,8 @@ func TestBind_WithCustomName(t *testing.T) {
 }
 
 func TestBind_WithoutCustomName(t *testing.T) {
-	os.Setenv("TEST_PREFIX_Config_Host", "localhost")
-	os.Setenv("TEST_PREFIX_Config_Port", "8080")
+	os.Setenv("TEST_PREFIX_Config__Host", "localhost")
+	os.Setenv("TEST_PREFIX_Config__Port", "8080")
 
 	var config Config
 	err := Bind("TEST_PREFIX_", &config)

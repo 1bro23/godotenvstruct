@@ -26,7 +26,7 @@ func Bind(prefix string, s interface{}) error {
 
 		tag := field.Tag.Get("env")
 		if tag == "" {
-			tag = t.Name() + "_" + field.Name
+			tag = t.Name() + "__" + field.Name
 		}
 		str, err := GetEnv(prefix + tag)
 		if err != nil {
